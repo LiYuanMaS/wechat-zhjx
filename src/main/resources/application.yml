@@ -1,0 +1,7 @@
+mybatis:
+  mapper-locations: classpath:mapping/wechat/*Mapper.xml
+  type-aliases-package: com.ocean.com.example.springbootdemo.pojo
+
+spring:
+  profiles:
+    active: uat
