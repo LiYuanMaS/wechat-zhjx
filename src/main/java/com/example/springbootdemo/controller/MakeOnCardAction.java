@@ -3,6 +3,8 @@ package com.example.springbootdemo.controller;
 
 import com.example.springbootdemo.service.MakeOnCardService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +23,7 @@ import java.util.Map;
 @RequestMapping(value = {"/real"})
 public class MakeOnCardAction
 {
+    private Logger log = LoggerFactory.getLogger(MakeOnCardAction.class);
     @Autowired
     private MakeOnCardService makeOnCardService;
 

@@ -3,6 +3,8 @@ package com.example.springbootdemo.utils;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.InputStream;
@@ -11,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 public class DomXml {
+    private Logger log = LoggerFactory.getLogger(DomXml.class);
     /**
      * XML格式转为map格式
      * @param request

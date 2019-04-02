@@ -5,13 +5,12 @@ import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
-
 import org.apache.http.client.methods.HttpGet;
-
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
@@ -21,6 +20,7 @@ import java.io.IOException;
  * @desc 用户获取access_token,众号调用各接口时都需使用access_token
  **/
 public class WeiXinUtils {
+    private Logger log = LoggerFactory.getLogger(WeiXinUtils.class);
     /**
      * Get请求，方便到一个url接口来获取结果
      *

@@ -2,9 +2,10 @@ package com.example.springbootdemo.utils;
 
 import com.example.springbootdemo.dao.WeiXinUserInfoService;
 import com.example.springbootdemo.pojo.WeixinUser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,8 +17,11 @@ import java.util.Map;
  */
 @Service
 public class CommonWechatUser {
+    private Logger log = LoggerFactory.getLogger(CommonWechatUser.class);
+
     @Autowired
     private WeiXinUserInfoService userService;
+
     public WeixinUser getTheCode(String code) {
         Map<String, String> authInfo = new HashMap<>();
         String openId = "";

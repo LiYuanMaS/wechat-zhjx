@@ -3,6 +3,8 @@ package com.example.springbootdemo.controller;
 
 import com.example.springbootdemo.service.CarMessDetailService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,8 @@ import java.util.Map;
 @RequestMapping(value = {"/cardMess"})
 public class CarMessDetailAction
 {
+    private Logger log = LoggerFactory.getLogger(CarMessDetailAction.class);
+
     private final static String WECHATID = "wechatId";
     @Autowired
     private CarMessDetailService carMessDetailService;
@@ -32,8 +36,8 @@ public class CarMessDetailAction
     @RequestMapping(value={"/findCar"})
     public Map<String,Object> getAllUsers(HttpServletRequest req){
         Map<String,Object> map = new HashMap<>();
-       // String wechatid = req.getSession().getAttribute(WECHATID).toString();
-        String wechatid = "test123456";
+        String wechatid = req.getSession().getAttribute(WECHATID).toString();
+        //String wechatid = "test123456";
         if(StringUtils.isEmpty(wechatid)){
             map.put("rspCode","neterror");
             map.put("rspMes","非法请求！");

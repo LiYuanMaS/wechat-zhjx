@@ -1,13 +1,12 @@
 package com.example.springbootdemo.controller;
 
-import com.example.springbootdemo.pojo.WeixinUser;
-import com.example.springbootdemo.utils.CommonUser;
-
 import com.example.springbootdemo.pojo.UserDetail;
-
+import com.example.springbootdemo.pojo.WeixinUser;
 import com.example.springbootdemo.service.CarCardDetailService;
-
+import com.example.springbootdemo.utils.CommonUser;
 import com.example.springbootdemo.utils.CommonWechatUser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -28,6 +27,8 @@ import java.util.Map;
 @RequestMapping(value = {"/help"})
 public class CarCardDetailAction
 {
+    private Logger log = LoggerFactory.getLogger(CarCardDetailAction.class);
+
     private final static String WECHATID = "wechatId";
     @Autowired
     private CarCardDetailService carCardDetailService;
@@ -60,13 +61,15 @@ public class CarCardDetailAction
     public Map<String,Object> getCardList(HttpServletRequest req,@RequestBody Map<String,Object> reqMap){
         Map<String,Object> map = new HashMap<>();
         String wechatId = req.getSession().getAttribute(WECHATID).toString();
-        if(StringUtils.isEmpty(reqMap.get(wechatId))){
+        //String wechatId = "testadb";
+        log.info("wechatId--------:{}",wechatId);
+        if(StringUtils.isEmpty(wechatId)){
             map.put("rspCode","neterror");
             map.put("rspMsg","非法请求");
             return map;
         }
 
-        List<String> list = carCardDetailService.findCardDetail(wechatId);
+        List<String> list = carCardDetailService.findCardDetail(reqMap);
         if(StringUtils.isEmpty(list) || list.size()<0){
             map.put("rspCode","999");
             map.put("rspMsg","该地区车牌为空！");
@@ -77,7 +80,7 @@ public class CarCardDetailAction
             map.put("wechatId",wechatId);
         }
         map.put("rspData",list);
-
+        req.getSession().setAttribute(WECHATID,wechatId);
         return map;
     }
 
@@ -91,7 +94,7 @@ public class CarCardDetailAction
     public Map<String,Object> getCardMes(HttpServletRequest req,@RequestBody Map<String,Object> reqMap){
         Map<String,Object> map = new HashMap<>();
         String openId = req.getSession().getAttribute(WECHATID).toString();
-        System.out.println(openId+"---------------");
+        log.info("openId--------:{}",openId);
         if(StringUtils.isEmpty(openId)){
             map.put("rspCode","neterror");
             map.put("rspMsg","非法请求！");
@@ -115,8 +118,9 @@ public class CarCardDetailAction
      * @return
      */
     @RequestMapping(value={"/addCarInfo"})
-    public Map<String,Object> getAllUsers(HttpSession session,@RequestBody Map<String,Object> makeOnCard) {
-
+    @ResponseBody
+    public Map<String,Object> getAllUsers(HttpServletRequest req,@RequestBody Map<String,Object> makeOnCard) {
+        makeOnCard.put("wechatId",req.getSession().getAttribute(WECHATID));
         return carCardDetailService.updateCardMess(makeOnCard);
     }
 

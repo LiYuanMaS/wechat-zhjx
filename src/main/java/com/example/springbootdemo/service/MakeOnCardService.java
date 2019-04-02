@@ -2,14 +2,12 @@ package com.example.springbootdemo.service;
 
 
 import com.example.springbootdemo.dao.MakeOnCardMapper;
-
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import java.util.HashMap;
-
 import java.util.Map;
 
 /**
@@ -17,6 +15,8 @@ import java.util.Map;
  */
 @Service
 public class MakeOnCardService{
+    private Logger log = LoggerFactory.getLogger(MakeOnCardService.class);
+
     @Autowired
     private MakeOnCardMapper makeOnCardMapper;
 

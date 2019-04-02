@@ -2,9 +2,8 @@ package com.example.springbootdemo.service;
 
 
 import com.example.springbootdemo.dao.CarCardDetailMapper;
-import com.example.springbootdemo.dao.MakeOnCardMapper;
-import com.example.springbootdemo.pojo.CarCardDetail;
-import com.example.springbootdemo.pojo.CarMessDetail;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -20,23 +19,17 @@ import java.util.Map;
  */
 @Service
 public class CarCardDetailService {
+    private Logger log = LoggerFactory.getLogger(CarCardDetailService.class);
+
     @Autowired
     private CarCardDetailMapper carCardDetailMapper;
 
-    public List<String> findCardDetail(String wechatId){
-        List<String> list = carCardDetailMapper.findCardDetail(wechatId);
+    public List<String> findCardDetail(Map<String,Object> map){
+        List<String> list = carCardDetailMapper.findCardDetail(map);
         return list;
     }
 
-    public List<CarMessDetail> findMessDetail(String wechatId){
-        List<CarMessDetail> list = carCardDetailMapper.findCardMess(wechatId);
-        return list;
-    }
 
-    public Integer cardIsNo(String wechatId){
-        int result = carCardDetailMapper.cardIsNo(wechatId);
-        return result;
-    }
 
     @Transactional(propagation = Propagation.REQUIRED)
     public Map<String,Object> updateCardMess(Map<String,Object> map){

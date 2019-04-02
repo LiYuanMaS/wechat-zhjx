@@ -6,6 +6,8 @@ import com.example.springbootdemo.utils.CommonWechatUser;
 import com.example.springbootdemo.pojo.UserDetail;
 import com.example.springbootdemo.pojo.WeixinUser;
 import com.example.springbootdemo.service.UserDetailService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -26,7 +28,11 @@ import java.util.Map;
 @RequestMapping(value = {"/user"})
 public class UserDetailAction
 {
+    private Logger log = LoggerFactory.getLogger(UserDetailAction.class);
+
     private final static String WECHATID = "wechatId";
+    private final static String IMAGEURL = "wxImgUrl";
+    private final static String WXUSERNAME = "wxUserName";
     @Autowired
     private UserDetailService userDetailService;
 
@@ -40,14 +46,35 @@ public class UserDetailAction
      */
     @RequestMapping(value={"/usercenter"})
     public String usercenter(HttpServletRequest request){
+        log.info("进入个人中心首页---------------");
         HttpSession session = request.getSession();
         WeixinUser weixinUser = commonWechatUser.getTheCode(request.getParameter("code"));
         if(StringUtils.isEmpty(weixinUser)){
             return "neterror";
         }
         session.setAttribute(WECHATID,weixinUser.getOpenId());
+        session.setAttribute(IMAGEURL,weixinUser.getHeadImgUrl());
+        session.setAttribute(WXUSERNAME,weixinUser.getNickname());
         return "redirect:";
     }
+    /**
+     * 获取微信头像姓名
+     */
+    @RequestMapping(value={"/pushImage"})
+    @ResponseBody
+    public Map<String,Object> pushImage(HttpServletRequest req,@RequestBody Map<String,Object> makeOnCard){
+        Map<String,Object> map = new HashMap<>();
+        Object code = req.getSession().getAttribute(WECHATID).toString();
+        if(StringUtils.isEmpty(code.toString())){
+            map.put("resCode","neterror");
+            return map;
+        }
+        map.put(IMAGEURL,req.getSession().getAttribute(IMAGEURL));
+        map.put(WXUSERNAME,req.getSession().getAttribute(WXUSERNAME));
+
+        return map;
+    }
+
 
     /**
      * 注册个人信息逻辑
@@ -76,6 +103,7 @@ public class UserDetailAction
     @ResponseBody
     public Map<String,Object> finduser(HttpServletRequest request,Map<String,Object> reqMap){
         String wechatId = request.getSession().getAttribute(WECHATID).toString();
+        log.info("查询用户信息wechatid----:{}",wechatId);
 //        String wechatId = "1242141";
         Map<String,Object> result = new HashMap<>();
         if(StringUtils.isEmpty(wechatId)){

@@ -1,6 +1,8 @@
 package com.example.springbootdemo.service;
 
 import com.example.springbootdemo.dao.UserDetailMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,8 @@ import java.util.Map;
  */
 @Service
 public class UserDetailService {
+    private Logger log = LoggerFactory.getLogger(UserDetailService.class);
+
     @Autowired
     private UserDetailMapper userDetailMapper;
 

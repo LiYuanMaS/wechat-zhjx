@@ -1,10 +1,7 @@
 package com.example.springbootdemo.dao;
 
-import com.example.springbootdemo.pojo.CarCardDetail;
-import com.example.springbootdemo.pojo.CarMessDetail;
 import com.example.springbootdemo.pojo.WeixinUser;
 
-import java.util.List;
 import java.util.Map;
 
 /**
