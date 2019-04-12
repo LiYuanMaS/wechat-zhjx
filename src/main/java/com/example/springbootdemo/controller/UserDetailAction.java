@@ -1,8 +1,8 @@
 package com.example.springbootdemo.controller;
 
 
-import com.example.springbootdemo.utils.CommonUser;
-import com.example.springbootdemo.utils.CommonWechatUser;
+import com.example.springbootdemo.common.CommonUser;
+import com.example.springbootdemo.common.wechatcommon.CommonWechatUser;
 import com.example.springbootdemo.pojo.UserDetail;
 import com.example.springbootdemo.pojo.WeixinUser;
 import com.example.springbootdemo.service.UserDetailService;

@@ -1,4 +1,4 @@
-package com.example.springbootdemo.utils;
+package com.example.springbootdemo.common.wechatcommon;
 
 import com.example.springbootdemo.dao.WeiXinUserInfoService;
 import com.example.springbootdemo.pojo.WeixinUser;

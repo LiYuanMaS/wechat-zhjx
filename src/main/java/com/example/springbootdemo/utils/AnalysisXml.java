@@ -12,10 +12,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DomXml {
-    private Logger log = LoggerFactory.getLogger(DomXml.class);
+public class AnalysisXml {
+    private Logger log = LoggerFactory.getLogger(AnalysisXml.class);
     /**
-     * XML格式转为map格式
+     * 解析XML格式转为map格式
      * @param request
      * @return
      */

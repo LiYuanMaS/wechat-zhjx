@@ -1,10 +1,10 @@
 package com.example.springbootdemo.controller;
 
+import com.example.springbootdemo.common.CommonUser;
 import com.example.springbootdemo.pojo.UserDetail;
 import com.example.springbootdemo.pojo.WeixinUser;
 import com.example.springbootdemo.service.CarCardDetailService;
-import com.example.springbootdemo.utils.CommonUser;
-import com.example.springbootdemo.utils.CommonWechatUser;
+import com.example.springbootdemo.common.wechatcommon.CommonWechatUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

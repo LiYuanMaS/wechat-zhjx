@@ -1,4 +1,4 @@
-package com.example.springbootdemo.utils;
+package com.example.springbootdemo.common.wechatcommon;
 /**
  * @author scw
  * @create 2018-01-17 14:35

@@ -1,4 +1,4 @@
-package com.example.springbootdemo.utils;
+package com.example.springbootdemo.common;
 
 import com.example.springbootdemo.dao.CommonUserMapper;
 import com.example.springbootdemo.pojo.UserDetail;

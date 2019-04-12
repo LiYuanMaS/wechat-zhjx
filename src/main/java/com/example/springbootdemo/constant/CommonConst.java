@@ -1,11 +1,11 @@
-package com.example.springbootdemo.utils;
+package com.example.springbootdemo.constant;
 
 /**
  * @author scw
  * @create 2018-01-18 15:31
- * @desc 项目相关的静态量
+ * @desc 授权链接项目相关的静态量
  **/
-public class ProjectConst {
+public class CommonConst {
     /**
      * 用于获取当前与微信公众号交互的用户信息的接口（一般是用第一个接口地址）
      */

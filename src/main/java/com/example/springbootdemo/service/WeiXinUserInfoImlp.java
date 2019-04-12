@@ -3,8 +3,8 @@ package com.example.springbootdemo.service;
 import com.alibaba.fastjson.JSONObject;
 import com.example.springbootdemo.dao.WeiXinUserInfoService;
 import com.example.springbootdemo.pojo.WeixinUser;
-import com.example.springbootdemo.utils.ProjectConst;
-import com.example.springbootdemo.utils.WeiXinUtils;
+import com.example.springbootdemo.constant.CommonConst;
+import com.example.springbootdemo.common.wechatcommon.WeiXinUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,7 +31,7 @@ public class WeiXinUserInfoImlp implements WeiXinUserInfoService {
     public WeixinUser getUserInfo(String accessToken, String openId) {
         WeixinUser weixinUserInfo = null;
         // 拼接获取用户信息接口的请求地址
-        String requestUrl = ProjectConst.GET_WEIXIN_USER_URL.replace("ACCESS_TOKEN", accessToken).replace(
+        String requestUrl = CommonConst.GET_WEIXIN_USER_URL.replace("ACCESS_TOKEN", accessToken).replace(
                 "OPENID", openId);
         // 获取用户信息(返回的是Json格式内容)
         JSONObject jsonObject = WeiXinUtils.doGetStr(requestUrl);
@@ -81,7 +81,7 @@ public class WeiXinUserInfoImlp implements WeiXinUserInfoService {
         //自己的配置APPSECRET;（公众号进行查阅）
         String appsecret = "18aa2b002251df97f0637719488a3000";
         //拼接用户授权接口信息
-        String requestUrl = ProjectConst.GET_WEBAUTH_URL.replace("APPID", appid).replace("SECRET", appsecret).replace("CODE", code);
+        String requestUrl = CommonConst.GET_WEBAUTH_URL.replace("APPID", appid).replace("SECRET", appsecret).replace("CODE", code);
         //存储获取到的授权字段信息
         Map<String, String> result = new HashMap<String, String>();
         try {

@@ -1,7 +1,8 @@
-package com.example.springbootdemo.utils;
+package com.example.springbootdemo.common.wechatcommon;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.springbootdemo.constant.CommonConst;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -55,7 +56,7 @@ public class WeiXinUtils {
      */
     public static AccessToken getAccessToken() {
         AccessToken accessToken = new AccessToken();
-        String url = ProjectConst.ACCESS_TOKEN_URL.replace("APPID", "wx56026fd2f599d104").replace("APPSECRET", "18aa2b002251df97f0637719488a3000");
+        String url = CommonConst.ACCESS_TOKEN_URL.replace("APPID", "wx56026fd2f599d104").replace("APPSECRET", "18aa2b002251df97f0637719488a3000");
         JSONObject jsonObject = doGetStr(url);
         if (jsonObject != null) {
             accessToken.setToken(jsonObject.getString("access_token"));
