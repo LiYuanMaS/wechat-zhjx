@@ -1,11 +1,11 @@
 server:
-  port: 8099
+  port: 8081
 
 
 spring:
     datasource:
         name: Ma
-        url: jdbc:mysql://39.98.218.20:3306/JXZG?characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+        url: jdbc:mysql://39.98.218.20:3306/zhihui?characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
         username: root
         password: zyz9499
         driver-class-name: com.mysql.cj.jdbc.Driver
