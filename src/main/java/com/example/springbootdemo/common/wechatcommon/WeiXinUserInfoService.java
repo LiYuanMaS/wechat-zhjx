@@ -1,4 +1,4 @@
-package com.example.springbootdemo.dao;
+package com.example.springbootdemo.common.wechatcommon;
 
 import com.example.springbootdemo.pojo.WeixinUser;
 

@@ -1,7 +1,6 @@
 package com.example.springbootdemo.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.example.springbootdemo.dao.WeiXinUserInfoService;
 import com.example.springbootdemo.pojo.WeixinUser;
 import com.example.springbootdemo.constant.CommonConst;
 import com.example.springbootdemo.common.wechatcommon.WeiXinUtils;

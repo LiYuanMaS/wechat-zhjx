@@ -1,6 +1,5 @@
 package com.example.springbootdemo.common.wechatcommon;
 
-import com.example.springbootdemo.dao.WeiXinUserInfoService;
 import com.example.springbootdemo.pojo.WeixinUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
