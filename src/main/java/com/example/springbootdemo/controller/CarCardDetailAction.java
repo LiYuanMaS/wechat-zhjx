@@ -43,12 +43,15 @@ public class CarCardDetailAction
      */
     @RequestMapping(value={"/choosecar"})
     public String choosecar(HttpServletRequest request){
+        log.info("开始处理自助选号授权逻辑---------------");
         HttpSession session = request.getSession();
         WeixinUser weixinUser = commonWechatUser.getTheCode(request.getParameter("code"));
         if(StringUtils.isEmpty(weixinUser)){
             return "neterror";
         }
         session.setAttribute(WECHATID,weixinUser.getOpenId());
+        log.info("wechatId-------:{}",weixinUser.getOpenId());
+        log.info("授权成功，准备回调页面*****************");
         return "redirect:http://h5.zhjxw.cn/#/";
     }
 

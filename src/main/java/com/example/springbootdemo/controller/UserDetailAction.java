@@ -55,6 +55,8 @@ public class UserDetailAction
         session.setAttribute(WECHATID,weixinUser.getOpenId());
         session.setAttribute(IMAGEURL,weixinUser.getHeadImgUrl());
         session.setAttribute(WXUSERNAME,weixinUser.getNickname());
+        log.info("wechatId-------:{}",weixinUser.getOpenId());
+        log.info("授权成功，准备回调页面*****************");
         return "redirect:http://h5.zhjxw.cn/#/user/index";
     }
     /**
