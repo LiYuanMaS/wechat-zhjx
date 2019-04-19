@@ -12,6 +12,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
@@ -20,15 +21,16 @@ import java.io.IOException;
  * @create 2018-01-17 14:13
  * @desc 用户获取access_token,众号调用各接口时都需使用access_token
  **/
-public class WeiXinUtils {
-    private Logger log = LoggerFactory.getLogger(WeiXinUtils.class);
+@Service
+public class WeiXinService {
+    private Logger log = LoggerFactory.getLogger(WeiXinService.class);
     /**
      * Get请求，方便到一个url接口来获取结果
      *
      * @param url
      * @return
      */
-    public static JSONObject doGetStr(String url) {
+    public  JSONObject doGetStr(String url) {
         CloseableHttpClient defaultHttpClient = HttpClients.createDefault();
         HttpGet httpGet = new HttpGet(url);
         JSONObject jsonObject = null;
@@ -54,10 +56,11 @@ public class WeiXinUtils {
      * 获取access_token
      * @return
      */
-    public static AccessToken getAccessToken() {
+    public  AccessToken getAccessToken() {
         AccessToken accessToken = new AccessToken();
         String url = CommonConst.ACCESS_TOKEN_URL.replace("APPID", "wx56026fd2f599d104").replace("APPSECRET", "18aa2b002251df97f0637719488a3000");
         JSONObject jsonObject = doGetStr(url);
+        log.info("获取到的access_token信息:{}",jsonObject);
         if (jsonObject != null) {
             accessToken.setToken(jsonObject.getString("access_token"));
             accessToken.setExpireIn(jsonObject.getInteger("expires_in"));

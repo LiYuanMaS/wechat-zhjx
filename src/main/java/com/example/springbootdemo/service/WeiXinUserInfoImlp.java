@@ -4,9 +4,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.springbootdemo.common.wechatcommon.WeiXinUserInfoService;
 import com.example.springbootdemo.pojo.WeixinUser;
 import com.example.springbootdemo.constant.CommonConst;
-import com.example.springbootdemo.common.wechatcommon.WeiXinUtils;
+import com.example.springbootdemo.common.wechatcommon.WeiXinService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -21,6 +22,8 @@ import java.util.Map;
 public class WeiXinUserInfoImlp implements WeiXinUserInfoService {
     private Logger log = LoggerFactory.getLogger(WeiXinUserInfoService.class);
 
+    @Autowired
+    private WeiXinService weiXinService;
     /**
      * 获取微信用户的信息
      *
@@ -35,7 +38,7 @@ public class WeiXinUserInfoImlp implements WeiXinUserInfoService {
         String requestUrl = CommonConst.GET_WEIXIN_USER_URL.replace("ACCESS_TOKEN", accessToken).replace(
                 "OPENID", openId);
         // 获取用户信息(返回的是Json格式内容)
-        JSONObject jsonObject = WeiXinUtils.doGetStr(requestUrl);
+        JSONObject jsonObject = weiXinService.doGetStr(requestUrl);
 
         if (null != jsonObject) {
             try {
@@ -86,7 +89,7 @@ public class WeiXinUserInfoImlp implements WeiXinUserInfoService {
         //存储获取到的授权字段信息
         Map<String, String> result = new HashMap<String, String>();
         try {
-            JSONObject OpenidJSONO = WeiXinUtils.doGetStr(requestUrl);
+            JSONObject OpenidJSONO = weiXinService.doGetStr(requestUrl);
             //OpenidJSONO可以得到的内容：access_token expires_in  refresh_token openid scope
             String Openid = String.valueOf(OpenidJSONO.get("openid"));
             String AccessToken = String.valueOf(OpenidJSONO.get("access_token"));

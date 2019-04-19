@@ -22,6 +22,8 @@ public class CommonWechatUser {
     @Autowired
     private WeiXinUserInfoService userService;
 
+    @Autowired
+    private WeiXinService weiXinService;
     public WeixinUser getTheCode(String code) {
 
         Map<String, String> authInfo = new HashMap<>();
@@ -35,7 +37,7 @@ public class CommonWechatUser {
             log.info("微信授权code为null!!!!!!!!!!!!!!!!!!!!!");
         }
         // 获取基础刷新的接口访问凭证（目前还没明白为什么用authInfo.get("AccessToken");这里面的access_token就不行）
-        String accessToken = WeiXinUtils.getAccessToken().getToken();
+        String accessToken = weiXinService.getAccessToken().getToken();
         //获取到微信用户的信息
         WeixinUser userinfo = userService.getUserInfo(accessToken, openId);
 
