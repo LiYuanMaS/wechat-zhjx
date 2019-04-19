@@ -1,11 +1,13 @@
 package com.example.springbootdemo.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.springbootdemo.common.wechatcommon.WeiXinUserInfoService;
 import com.example.springbootdemo.pojo.WeixinUser;
 import com.example.springbootdemo.constant.CommonConst;
 import com.example.springbootdemo.common.wechatcommon.WeiXinUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +17,7 @@ import java.util.Map;
  * @create 2018-01-18 17:51
  * @desc 用于获取微信用户的信息
  **/
-
+@Service
 public class WeiXinUserInfoImlp implements WeiXinUserInfoService {
     private Logger log = LoggerFactory.getLogger(WeiXinUserInfoService.class);
 
