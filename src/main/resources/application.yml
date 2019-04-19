@@ -4,4 +4,4 @@ mybatis:
 
 spring:
   profiles:
-    active: uat
+    active: pat

@@ -12,6 +12,8 @@
         </commentGenerator>
         <!--数据库连接驱动类,URL，用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver" connectionURL="jdbc:mysql://localhost/springbootTest?characterEncoding=UTF-8&amp;useSSL=false&amp;serverTimezone=UTC" userId="root" password="Root-123">
+        <!--<jdbcConnection driverClass="com.mysql.cj.jdbc.Driver" connectionURL="dbc:mysql://39.98.218.20:3306/JXZG?characterEncoding=UTF-8&amp;useSSL=false&amp;serverTimezone=UTC" userId="root" password="Root-123">-->
+
         </jdbcConnection>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>

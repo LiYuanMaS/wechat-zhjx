@@ -55,7 +55,7 @@ public class UserDetailAction
         session.setAttribute(WECHATID,weixinUser.getOpenId());
         session.setAttribute(IMAGEURL,weixinUser.getHeadImgUrl());
         session.setAttribute(WXUSERNAME,weixinUser.getNickname());
-        return "redirect:";
+        return "redirect:http://h5.zhjxw.cn/#/user/index";
     }
     /**
      * 获取微信头像姓名

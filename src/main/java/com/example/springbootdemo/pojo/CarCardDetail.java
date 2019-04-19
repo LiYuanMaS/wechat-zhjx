@@ -8,6 +8,7 @@ public class CarCardDetail {
      */
     private String region;
 
+
     /**
      *
      * 市

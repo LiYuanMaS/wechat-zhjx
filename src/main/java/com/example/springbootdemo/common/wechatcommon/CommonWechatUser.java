@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,13 +24,16 @@ public class CommonWechatUser {
     private WeiXinUserInfoService userService;
 
     public WeixinUser getTheCode(String code) {
+
         Map<String, String> authInfo = new HashMap<>();
         String openId = "";
-        if (code != null) {
+        if (!StringUtils.isEmpty(code)) {
             // 调用根据用户的code得到需要的授权信息
             authInfo = userService.getAuthInfo(code);
             //获取到openId
             openId = authInfo.get("Openid");
+        }else{
+            log.info("微信授权code为null!!!!!!!!!!!!!!!!!!!!!");
         }
         // 获取基础刷新的接口访问凭证（目前还没明白为什么用authInfo.get("AccessToken");这里面的access_token就不行）
         String accessToken = WeiXinUtils.getAccessToken().getToken();
