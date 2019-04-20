@@ -5,6 +5,7 @@ import com.example.springbootdemo.common.wechatcommon.CommonWechatUser;
 import com.example.springbootdemo.pojo.UserDetail;
 import com.example.springbootdemo.pojo.WeixinUser;
 import com.example.springbootdemo.service.CarCardDetailService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 /**
  * 自助选号处理controller

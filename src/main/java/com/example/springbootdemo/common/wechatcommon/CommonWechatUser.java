@@ -31,6 +31,7 @@ public class CommonWechatUser {
         if (!StringUtils.isEmpty(code)) {
             // 调用根据用户的code得到需要的授权信息
             authInfo = userService.getAuthInfo(code);
+
             //获取到openId
             openId = authInfo.get("Openid");
         }else{
