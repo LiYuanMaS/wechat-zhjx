@@ -20,7 +20,7 @@ import java.util.Map;
  * 车牌信息controller
  */
 @RestController
-@RequestMapping(value = {"/cardMess"})
+@RequestMapping("/api/cardMess")
 public class CarMessDetailAction
 {
     private Logger log = LoggerFactory.getLogger(CarMessDetailAction.class);
@@ -33,9 +33,9 @@ public class CarMessDetailAction
      * 查询车牌信息
      * @return
      */
-    @RequestMapping(value={"/findCar"})
+    @RequestMapping("/findCar")
     public Map<String,Object> getAllUsers(HttpServletRequest req){
-        Map<String,Object> map = new HashMap<>();
+        Map<String,Object> map = new HashMap<String,Object>();
         String wechatid = req.getSession().getAttribute(WECHATID).toString();
         //String wechatid = "test123456";
         if(StringUtils.isEmpty(wechatid)){

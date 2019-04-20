@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +26,7 @@ import java.util.Map;
  *
  */
 @Controller
-@RequestMapping(value = {"/user"})
+@RequestMapping("/api/user")
 public class UserDetailAction
 {
     private Logger log = LoggerFactory.getLogger(UserDetailAction.class);
@@ -44,36 +45,23 @@ public class UserDetailAction
     /**
      * 进入个人中心首页
      */
-    @RequestMapping(value={"/usercenter"})
-    public String usercenter(HttpServletRequest request){
+    @RequestMapping("/usercenter")
+    public void usercenter(HttpServletRequest request,HttpServletResponse response) throws IOException {
         log.info("进入个人中心首页---------------");
-        HttpSession session = request.getSession();
         WeixinUser weixinUser = commonWechatUser.getTheCode(request.getParameter("code"));
-        if(StringUtils.isEmpty(weixinUser)){
-            return "neterror";
-        }
-        session.setAttribute(WECHATID,weixinUser.getOpenId());
-        session.setAttribute(IMAGEURL,weixinUser.getHeadImgUrl());
-        session.setAttribute(WXUSERNAME,weixinUser.getNickname());
         log.info("wechatId-------:{}",weixinUser.getOpenId());
         log.info("授权成功，准备回调页面*****************");
-        return "forward:http://h5.zhjxw.cn/#/user/index";
+        response.sendRedirect("http://h5.zhjxw.cn/#/user/index?headPath=" + weixinUser.getHeadImgUrl() + "&username=" + weixinUser.getNickname() + "&wechatId=" + weixinUser.getOpenId());
     }
     /**
      * 获取微信头像姓名
      */
-    @RequestMapping(value={"/pushImage"})
+    @RequestMapping("/pushImage")
     @ResponseBody
     public Map<String,Object> pushImage(HttpServletRequest req,@RequestBody Map<String,Object> makeOnCard){
         Map<String,Object> map = new HashMap<>();
-        Object code = req.getSession().getAttribute(WECHATID).toString();
-        if(StringUtils.isEmpty(code.toString())){
-            map.put("resCode","neterror");
-            return map;
-        }
-        map.put(IMAGEURL,req.getSession().getAttribute(IMAGEURL));
-        map.put(WXUSERNAME,req.getSession().getAttribute(WXUSERNAME));
-
+        String wechatId = makeOnCard.get("wechatId").toString();
+        req.getSession().setAttribute(WECHATID,wechatId);
         return map;
     }
 

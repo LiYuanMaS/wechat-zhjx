@@ -20,7 +20,7 @@ import java.util.Map;
  * 在线预约controller
  */
 @RestController
-@RequestMapping(value = {"/real"})
+@RequestMapping("/api/real")
 public class MakeOnCardAction
 {
     private Logger log = LoggerFactory.getLogger(MakeOnCardAction.class);
@@ -31,9 +31,9 @@ public class MakeOnCardAction
      * 在线预约逻辑
      * @return
      */
-    @RequestMapping(value={"/oncard"})
+    @RequestMapping("/oncard")
     public Map<String,Object> getAllUsers(@RequestBody Map<String,Object> makeOnCard){
-        Map<String,Object> map = new HashMap<>();
+        Map<String,Object> map = new HashMap<String,Object>();
         String list = makeOnCardService.listAll(makeOnCard);
         if(!StringUtils.isEmpty(list)){
             map.put("rspCode","999");
