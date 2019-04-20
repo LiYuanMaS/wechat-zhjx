@@ -1,33 +1,29 @@
 package com.example.springbootdemo.config;
 
 
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 
 @Configuration
-public class MyConfiguration {
-
-    @Bean
-    public FilterRegistrationBean corsFilter() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        // 设置域名你要允许的网站，如果全允许则设为 *
-        //config.addAllowedOrigin("http://127.0.0.1:3000");
-        config.addAllowedOrigin("*");
-        // 如果要限制 HEADER 或 METHOD 请自行更改
-        config.addAllowedHeader("x-requested-with,content-type,requesttype");
-        config.addAllowedMethod("*");
-        source.registerCorsConfiguration("/**", config);
-        FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
-        // 这个顺序很重要哦，为避免麻烦请设置在最前
-        bean.setOrder(0);
-        return bean;
+public class MyConfiguration extends WebMvcConfigurationSupport {
+    private Logger log = LoggerFactory.getLogger(WebMvcConfigurationSupport.class);
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        log.info("MyWebConfig跨域拦截器开始处理----------");
+        //设置允许跨域的路径
+        registry.addMapping("/**")
+                //设置允许跨域请求的域名
+                .allowedOrigins("*")
+                //是否允许证书 不再默认开启
+                .allowCredentials(true)
+                //设置允许的方法
+                .allowedMethods("*")
+                //跨域允许时间
+                .maxAge(3600);
     }
 
 }

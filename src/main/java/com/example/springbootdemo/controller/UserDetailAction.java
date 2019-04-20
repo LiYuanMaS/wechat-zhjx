@@ -57,7 +57,7 @@ public class UserDetailAction
         session.setAttribute(WXUSERNAME,weixinUser.getNickname());
         log.info("wechatId-------:{}",weixinUser.getOpenId());
         log.info("授权成功，准备回调页面*****************");
-        return "redirect:http://h5.zhjxw.cn/#/user/index";
+        return "forward:http://h5.zhjxw.cn/#/user/index";
     }
     /**
      * 获取微信头像姓名
